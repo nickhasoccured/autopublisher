@@ -11,6 +11,18 @@ client.once('ready', () => {
 	client.user.setActivity(`news channels`, { type: 'WATCHING' })
 });
 
+client.on('guildCreate', guild => {
+  console.log(`NEW GUILD: ${guild.name} (ID: ${guild.id})\n* ${guild.members.size} members`);
+
+  if (guild.partnered) {
+    console.log('- This guild is PARTNERED')
+  };
+
+  if (guild.verified) {
+    console.log('- This guild is VERIFIED')
+  };
+});
+
 client.on('message', message => {
   if (message.channel.type === 'news') {
     message.crosspost()
