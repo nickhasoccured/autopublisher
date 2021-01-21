@@ -1,19 +1,19 @@
 {
-  "name": "autopublisher",
-  "version": "1.0.0",
-  "description": "A simple Discord bot that automatically publishes messages in announcement channels.",
-  "main": "main.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nickhasoccured/autopublisher.git"
-  },
-  "author": "Nicholas Christopher",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/nickhasoccured/autopublisher/issues"
-  },
-  "homepage": "https://github.com/nickhasoccured/autopublisher#readme",
-  "dependencies": {
-    "discord.js": "^12.5.1"
-  }
+	"name": "autopublisher",
+	"version": "2.0.0",
+	"description": "A simple Discord bot that automatically publishes messages in announcement channels.",
+	"main": "main.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nickhasoccured/autopublisher.git"
+	},
+	"author": "Nicholas Christopher <nchristopher@tuta.io> (nchristopher.me)",
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/nickhasoccured/autopublisher/issues"
+	},
+	"homepage": "https://github.com/nickhasoccured/autopublisher#readme",
+	"dependencies": {
+		"discord.js": "^12.5.1"
+	}
 }

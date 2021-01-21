@@ -2,71 +2,67 @@ const Discord = require("discord.js");
 
 const config = require("./config.json");
 
-const client = new Discord.Client({
-	presence: {
-		activity: {
-			name: "@AutoPublisher",
-			type: "WATCHING",
-		},
-	},
-});
+const client = new Discord.Client();
 
 client.once("ready", () => {
-	console.log(`Logged in as ${client.user.tag}`);
-});
+	console.log(`Logged in as ${client.user.tag} (${client.user.id})`);
+	client.user.setPresence({
+		activity: {
+			name: `${client.guilds.cache.size} servers!`,
+			type: "WATCHING",
+		},
+	});
 
-client.on("guildCreate", (guild) => {
-	console.log(`NEW GUILD: ${guild.name} (${guild.id})
-	* ${guild.memberCount} members`);
-
-	if (guild.partnered) {
-		console.log("- This guild is PARTNERED");
-	}
-
-	if (guild.verified) {
-		console.log("- This guild is VERIFIED");
-	}
+	setInterval(() => {
+		client.user.setPresence({
+			activity: {
+				name: `${client.guilds.cache.size} servers!`,
+				type: "WATCHING",
+			},
+		});
+	}, 600000);
 });
 
 client.on("message", (message) => {
 	if (message.channel.type === "news") {
 		message.crosspost().catch((error) => {
-			console.error(`Failed to crosspost message (${message.id}) in channel #${message.channel.name} (${message.channel.id}) of server ${message.guild.name} (${message.guild.id})
-				* ${error}`);
+			console.error(`Failed to crosspost message (${
+				message.id
+			}) in channel #${message.channel.name} (${message.channel.id}) ${
+				message.guild
+					? `of server ${message.guild.name} (${message.guild.id})`
+					: ""
+			}
+			${error}`);
 
 			const owner = client.users.resolve(message.guild.ownerID);
 			if (owner) {
 				const errorEmbed = new Discord.MessageEmbed()
-					.setTitle(`An error occured`)
+					.setTitle("An error occured")
 					.setColor("#f92921")
 					.setDescription(
 						`There was an issue publishing a message in <#${message.channel.id}>, make sure I have permissions to do so!`
 					);
 				owner.send(errorEmbed).catch((error) => {
 					console.error(`Failed to send message to ${owner.tag} (${owner.id})
-						* ${error}`);
+						${error}`);
 				});
 			}
 		});
 	}
 
-	if (
-		message.mentions.has(client.user, {
-			ignoreEveryone: true,
-			ignoreRoles: true,
-		})
-	) {
+	if (message.channel.type === "dm" && !message.author.bot) {
 		const embed = new Discord.MessageEmbed()
 			.setColor("#2ea1de")
 			.setTitle("Information")
 			.setDescription(
 				`Autopublisher is a simple Discord bot that automatically publishes messages in announcement channels.
 			
-			<:GitHub:771849320705556500> [**SOURCE CODE**](https://github.com/nickhasoccured/autopublisher)`
+			[Source Code](https://github.com/nickhasoccured/autopublisher)`
 			)
 			.setThumbnail("https://i.imgur.com/ZMpfsAf.png")
 			.addFields({
-				name: `Common Issues`,
+				name: "Common Issues",
 				value: `If I'm not automatically publishing messages, make sure that
 				**1)** I have permissions to manage & read messages in that channel
 				**2)** The channel is an announcement channel
@@ -74,8 +70,14 @@ client.on("message", (message) => {
 				inline: true,
 			});
 		message.channel.send(embed).catch((error) => {
-			console.error(`Failed to send message in channel #${message.channel.name} (${message.channel.id}) of server ${message.guild.name} (${message.guild.id})
-				* ${error}`);
+			console.error(`Failed to send message in channel #${
+				message.channel.name
+			} (${message.channel.id}) ${
+				message.guild
+					? `of server ${message.guild.name} (${message.guild.id})`
+					: ""
+			}
+			${error}`);
 		});
 	}
 });

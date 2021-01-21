@@ -1,3 +1,5 @@
-<img align="right" height=150 width=150 src="https://i.imgur.com/BZ4fV76.png" /></p>
+<img align="right" height=128 width=128 src="logo.png" /></p>
+
 # AutoPublisher
+
 A simple Discord bot that automatically publishes messages in announcement channels.
