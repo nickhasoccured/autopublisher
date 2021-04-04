@@ -19,7 +19,7 @@ const infoEmbed = new Discord.MessageEmbed()
 	.setColor("#2ea1de")
 	.setTitle("Information")
 	.setDescription(
-		`Autopublisher is a simple Discord bot that automatically publishes messages in announcement channels.
+		`AutoPublisher is a simple Discord bot that automatically publishes messages in announcement channels.
 
 [Source Code](https://github.com/nickhasoccured/autopublisher)`
 	)
@@ -27,9 +27,9 @@ const infoEmbed = new Discord.MessageEmbed()
 	.addFields({
 		name: "Common Issues",
 		value: `If I'm not automatically publishing messages, make sure that:
-	**1)** I have permissions to manage & read messages in that channel.
-	**2)** The channel is an announcement channel.
-	If you're sure there's a problem, open an issue on this bot's [GitHub](https://github.com/nickhasoccured/autopublisher)`,
+**1)** I have permissions to manage & read messages in that channel.
+**2)** The channel is an announcement channel.
+If you're sure there's a problem, open an issue on this bot's [GitHub](https://github.com/nickhasoccured/autopublisher)`,
 		inline: true,
 	});
 
@@ -58,7 +58,7 @@ client.on("message", (message) => {
 			const owner = client.users.resolve(message.guild.ownerID);
 			if (owner) {
 				const errorEmbed = new Discord.MessageEmbed()
-					.setTitle("An error occured")
+					.setTitle("An error occurred")
 					.setColor("#f92921")
 					.setDescription(
 						`There was an issue publishing a message in <#${message.channel.id}>, make sure I have permissions to do so!`
