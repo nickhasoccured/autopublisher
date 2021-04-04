@@ -16,5 +16,10 @@
 	"homepage": "https://github.com/nickhasoccured/autopublisher#readme",
 	"dependencies": {
 		"discord.js": "^12.5.3"
+	},
+	"devDependencies": {
+		"eslint": "^7.23.0",
+		"eslint-config-prettier": "^8.1.0",
+		"prettier": "^2.2.1"
 	}
 }

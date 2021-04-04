@@ -52,9 +52,11 @@ client.once("ready", () => {
 	}, 600000);
 });
 
-client.on("message", (message) => {
+client.on("message", async (message) => {
 	if (message.channel.type === "news") {
-		message.crosspost().catch(() => {
+		try {
+			await message.crosspost();
+		} catch {
 			const owner = client.users.resolve(message.guild.ownerID);
 			if (owner) {
 				const errorEmbed = new Discord.MessageEmbed()
@@ -63,13 +65,26 @@ client.on("message", (message) => {
 					.setDescription(
 						`There was an issue publishing a message in <#${message.channel.id}>, make sure I have permissions to do so!`
 					);
-				owner.send(errorEmbed).catch(() => {});
+
+				try {
+					await owner.send(errorEmbed);
+				} catch (error) {
+					console.error(
+						`Failed to send error message to ${owner.tag} (${owner.id}) of guild ${message.guild.name} (${message.guild.id})\n${error}`
+					);
+				}
 			}
-		});
+		}
 	}
 
 	if (message.channel.type === "dm" && !message.author.bot) {
-		message.channel.send(infoEmbed).catch(() => {});
+		try {
+			await message.channel.send(infoEmbed);
+		} catch (error) {
+			console.error(
+				`Failed to send info message to ${message.author.tag} (${message.author.id})\n${error}`
+			);
+		}
 	}
 });
 
