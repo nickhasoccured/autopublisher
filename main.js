@@ -21,7 +21,7 @@ const infoEmbed = new Discord.MessageEmbed()
 	.setDescription(
 		`AutoPublisher is a simple Discord bot that automatically publishes messages in announcement channels.
 
-[Source Code](https://github.com/nickhasoccured/autopublisher)`
+[Source Code](https://github.com/nchristopher/autopublisher)`
 	)
 	.setThumbnail("https://i.imgur.com/ZMpfsAf.png")
 	.addFields({
@@ -29,7 +29,7 @@ const infoEmbed = new Discord.MessageEmbed()
 		value: `If I'm not automatically publishing messages, make sure that:
 **1)** I have permissions to manage & read messages in that channel.
 **2)** The channel is an announcement channel.
-If you're sure there's a problem, open an issue on this bot's [GitHub](https://github.com/nickhasoccured/autopublisher)`,
+If you're sure there's a problem, open an issue on this bot's [GitHub](https://github.com/nchristopher/autopublisher/issues/new)`,
 		inline: true,
 	});
 

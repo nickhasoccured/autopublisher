@@ -6,14 +6,14 @@
 	"private": true,
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/nickhasoccured/autopublisher.git"
+		"url": "git+https://github.com/nchristopher/autopublisher.git"
 	},
 	"author": "Nicholas Christopher <nchristopher@tuta.io> (nchristopher.me)",
 	"license": "AGPL-3.0-only",
 	"bugs": {
-		"url": "https://github.com/nickhasoccured/autopublisher/issues"
+		"url": "https://github.com/nchristopher/autopublisher/issues"
 	},
-	"homepage": "https://github.com/nickhasoccured/autopublisher#readme",
+	"homepage": "https://github.com/nchristopher/autopublisher#readme",
 	"dependencies": {
 		"discord.js": "^12.5.3"
 	},
